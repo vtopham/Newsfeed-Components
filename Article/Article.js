@@ -99,6 +99,34 @@ const data = [
     <span class='expandButton'></span>
   </div>
 
+  */
+function createComponent(articleInfo) {
+  const articleDiv = document.createElement("div"); //create the headline
+  articleDiv.classList.add("article");
+  articleDiv.textContent = articleInfo.title;
+
+  const articleDate = document.createElement("p");
+  articleDate.classList.add("date");
+  articleDate.textContent = articleInfo.date;
+
+  const firstP = document.createElement("p");
+  firstP.textContent = articleInfo.firstParagraph;
+
+  const secondP = document.createElement("p");
+  secondP.textContent = articleInfo.secondParagraph;
+
+  const thirdP = document.createElement("p");
+  thirdP.textContent = articleInfo.thirdParagraph;
+
+  const span = document.createElement("span");
+  span.classList.add("expandButton");
+
+  return {articleDiv, articleDate, firstP, secondP, thirdP, span};
+}
+
+console.log (createComponent(data[0]));
+  /*
+
   Hint: You will need to use createElement more than once here!
 
   Your function should take either an object as it's one argument, or 5 separate arguments mapping to each piece of the data object above.
