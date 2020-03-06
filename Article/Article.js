@@ -85,6 +85,15 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'blah blah blah title from the future',
+    date: 'Dec 5, 1908',
+    firstParagraph: `Hello`,
+
+    secondParagraph: `Goodbye`,
+
+    thirdParagraph: `Blah blah blah`
   }
 ];
 
@@ -99,34 +108,6 @@ const data = [
     <span class='expandButton'></span>
   </div>
 
-  */
-function createComponent(articleInfo) {
-  const articleDiv = document.createElement("div"); //create the headline
-  articleDiv.classList.add("article");
-  articleDiv.textContent = articleInfo.title;
-
-  const articleDate = document.createElement("p");
-  articleDate.classList.add("date");
-  articleDate.textContent = articleInfo.date;
-
-  const firstP = document.createElement("p");
-  firstP.textContent = articleInfo.firstParagraph;
-
-  const secondP = document.createElement("p");
-  secondP.textContent = articleInfo.secondParagraph;
-
-  const thirdP = document.createElement("p");
-  thirdP.textContent = articleInfo.thirdParagraph;
-
-  const span = document.createElement("span");
-  span.classList.add("expandButton");
-
-  return {articleDiv, articleDate, firstP, secondP, thirdP, span};
-}
-
-console.log (createComponent(data[0]));
-  /*
-
   Hint: You will need to use createElement more than once here!
 
   Your function should take either an object as it's one argument, or 5 separate arguments mapping to each piece of the data object above.
@@ -140,3 +121,56 @@ console.log (createComponent(data[0]));
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+
+function createComponent(articleInfo) {
+  
+  const articleDiv = document.createElement("div"); //create the headline
+  articleDiv.classList.add("article");
+  articleDiv.textContent = articleInfo.title;
+
+  const articleDate = document.createElement("p"); //the date
+  articleDate.classList.add("date");
+  articleDate.textContent = articleInfo.date;
+  articleDiv.appendChild(articleDate);
+
+  const firstP = document.createElement("p"); //the three paragraphs
+  firstP.textContent = articleInfo.firstParagraph;
+  articleDiv.appendChild(firstP);
+
+  const secondP = document.createElement("p");
+  secondP.textContent = articleInfo.secondParagraph;
+  articleDiv.appendChild(secondP);
+
+  const thirdP = document.createElement("p");
+  thirdP.textContent = articleInfo.thirdParagraph;
+  articleDiv.appendChild(thirdP);
+
+  const span = document.createElement("span"); //the span
+  span.classList.add("expandButton");
+
+  span.addEventListener("click", (event) => {
+    span.classList.toggle("article-open");
+  });
+
+  articleDiv.appendChild(span);
+  
+  
+  return articleDiv;
+}
+
+//create an array of objects to add to the feed
+let articlesArray = data.map((item) => {
+  return createComponent(item);
+});
+
+//select where we want to add the articles
+let articlesAdd = document.querySelector(".articles");
+
+//append those suckers
+articlesArray.forEach((item) => {
+  articlesAdd.appendChild(item);
+});
+
+
+
+  
