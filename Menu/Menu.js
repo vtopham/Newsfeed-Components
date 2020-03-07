@@ -9,6 +9,32 @@ let menuItems = [
   'Log Out'
 ];
 
+function createMenuComponent(items) { //create a whole menu thingy
+  let menuDiv = document.createElement("div");
+  menuDiv.classList.add("menu");
+
+  let listContainer = document.createElement("ul");
+  menuDiv.appendChild(listContainer);
+
+  items.forEach((item) => {
+    let menuItem = document.createElement("li");
+    menuItem.textContent = item;
+    listContainer.appendChild(menuItem);
+  });
+
+  let menuBtn = document.querySelector(".menu-button"); //select for the menu button
+
+  menuBtn.addEventListener("click", (event) => { //when the button is clicked, the menu itself gets the class toggled 
+    menuDiv.classList.toggle("menu--open");
+  });
+  
+  return menuDiv;
+}
+
+let htmlSelector = document.querySelector("html");
+
+htmlSelector.appendChild(createMenuComponent(menuItems)); //add to the dom
+
 /* 
 
   Step 1: Write a function that will create a menu component as seen below:
