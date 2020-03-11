@@ -171,6 +171,12 @@ articlesArray.forEach((item) => {
   articlesAdd.appendChild(item);
 });
 
+///messing with gsap
+let menuButton = document.querySelector(".menu-button");
+menuButton.addEventListener("mouseover", () => {
+  gsap.to(event.target, {duration: 1, x: 100});
+})
+
 
 
   

@@ -31,9 +31,9 @@ function createMenuComponent(items) { //create a whole menu thingy
   return menuDiv;
 }
 
-let htmlSelector = document.querySelector("html");
+let bodySelector = document.querySelector("body");
 
-htmlSelector.appendChild(createMenuComponent(menuItems)); //add to the dom
+bodySelector.appendChild(createMenuComponent(menuItems)); //add to the dom
 
 /* 
 
