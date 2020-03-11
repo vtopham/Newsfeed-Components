@@ -147,9 +147,11 @@ function createComponent(articleInfo) {
 
   const span = document.createElement("span"); //the span
   span.classList.add("expandButton");
+  span.textContent = "expandButton";
+  articleDiv.appendChild(span);
 
   span.addEventListener("click", (event) => {
-    span.classList.toggle("article-open");
+    articleDiv.classList.toggle("article-open");
   });
 
   articleDiv.appendChild(span);
