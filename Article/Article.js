@@ -85,6 +85,15 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'blah blah blah title from the future',
+    date: 'Dec 5, 1908',
+    firstParagraph: `Hello`,
+
+    secondParagraph: `Goodbye`,
+
+    thirdParagraph: `Blah blah blah`
   }
 ];
 
@@ -112,3 +121,64 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+
+function createComponent(articleInfo) {
+  
+  const articleDiv = document.createElement("div"); //create the headline
+  articleDiv.classList.add("article");
+  articleDiv.textContent = articleInfo.title;
+
+  const articleDate = document.createElement("p"); //the date
+  articleDate.classList.add("date");
+  articleDate.textContent = articleInfo.date;
+  articleDiv.appendChild(articleDate);
+
+  const firstP = document.createElement("p"); //the three paragraphs
+  firstP.textContent = articleInfo.firstParagraph;
+  articleDiv.appendChild(firstP);
+
+  const secondP = document.createElement("p");
+  secondP.textContent = articleInfo.secondParagraph;
+  articleDiv.appendChild(secondP);
+
+  const thirdP = document.createElement("p");
+  thirdP.textContent = articleInfo.thirdParagraph;
+  articleDiv.appendChild(thirdP);
+
+  const span = document.createElement("span"); //the span
+  span.classList.add("expandButton");
+  span.textContent = "expandButton";
+  articleDiv.appendChild(span);
+
+  span.addEventListener("click", (event) => {
+    articleDiv.classList.toggle("article-open");
+  });
+
+  articleDiv.appendChild(span);
+  
+  
+  return articleDiv;
+}
+
+//create an array of objects to add to the feed
+let articlesArray = data.map((item) => {
+  return createComponent(item);
+});
+
+//select where we want to add the articles
+let articlesAdd = document.querySelector(".articles");
+
+//append those suckers
+articlesArray.forEach((item) => {
+  articlesAdd.appendChild(item);
+});
+
+///messing with gsap
+let menuButton = document.querySelector(".menu-button");
+menuButton.addEventListener("mouseover", () => {
+  gsap.to(event.target, {duration: 1, x: 100});
+})
+
+
+
+  
